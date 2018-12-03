@@ -3,6 +3,11 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+    {% if current_user.is_anonymous %}
+    {{ '未登陆！！！这里是首页，准备设置：整体情况，图形化展示磁盘空间使用、数据库使用情况、常用数据库等' }}
+    {% else %}
+    {{ '已登陆！！！这里是首页，准备设置：整体情况，图形化展示磁盘空间使用、数据库使用情况、常用数据库等' }}
+    {% endif %}
     {% if form %}
     {{ wtf.quick_form(form) }}
     <br>
