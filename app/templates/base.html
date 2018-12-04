@@ -49,4 +49,7 @@
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script>
+    {% endfor %}
 {% endblock %}

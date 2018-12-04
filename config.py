@@ -22,3 +22,4 @@ class Config(object):
     REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
     POSTS_PER_PAGE = 25
     LOCAL_PATH = os.environ.get('LOCAL_PATH') or os.getcwd() + '\\uploadfile'
+    REMOTE_HOST_PATH = os.environ.get('REMOTE_HOST_PATH') or os.getcwd() + '\\app\\static\\js'

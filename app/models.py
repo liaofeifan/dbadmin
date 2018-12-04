@@ -13,7 +13,6 @@ import jwt
 from app import db, login
 
 
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -52,8 +51,6 @@ class User(UserMixin, db.Model):
             return
         return User.query.get(id)
 
-
-
     def from_dict(self, data, new_user=False):
         for field in ['username', 'email', 'about_me']:
             if field in data:
@@ -84,3 +81,19 @@ class User(UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+class Monitor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ip = db.Column(db.String(64))
+    platform = db.Column(db.String(256))
+    cpu_count = db.Column(db.Integer)
+    cpu_count_logical = db.Column(db.Integer)
+    cpu_percent = db.Column(db.Float)
+    mem_total = db.Column(db.Float)
+    mem_percent = db.Column(db.Float)
+    disks = db.Column(db.String(1024))
+    insert_time = db.Column(db.DateTime, default=datetime.utcnow, index=True)
+
+    def __repr__(self):
+        return '<Monitor {}>'.format(self.platform)
